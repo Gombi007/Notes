@@ -15,8 +15,9 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,
-    secondary = DarkBlue,
-    background = Background
+    secondary = Purple500,
+    background = Background,
+
 
     /* Other default colors to override
     background = Color.White,
@@ -40,6 +41,6 @@ fun NotesTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable 
         colors = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

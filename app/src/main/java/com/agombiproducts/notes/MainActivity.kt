@@ -3,23 +3,28 @@ package com.agombiproducts.notes
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.agombiproducts.notes.database.Dummy
 import com.agombiproducts.notes.models.Note
+import com.agombiproducts.notes.ui.theme.Gold
+import com.agombiproducts.notes.ui.theme.NonUrgent
 import com.agombiproducts.notes.ui.theme.NotesTheme
+import com.agombiproducts.notes.ui.theme.Urgent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +37,35 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Notes(notes = Dummy.testNotes.notes)
+                    BoxWithConstraints(
+                        Modifier
+                            .offset(
+                                310.dp, 560.dp
+                            )
+                            .padding(
+                                0.dp, 15.dp
+                            )
+                    ) {
+                        CreateNote()
+                    }
                 }
             }
+        }
+    }
+
+    @Composable
+    fun CreateNote() {
+        FloatingActionButton(
+            onClick = { /*TODO*/ }, backgroundColor = Gold
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_baseline_add_24),
+                contentDescription = "Profile picture",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+
+            )
         }
     }
 
@@ -43,7 +75,7 @@ class MainActivity : ComponentActivity() {
             modifier = Modifier
                 .padding(5.dp, 5.dp)
                 .fillMaxWidth(),
-            color = MaterialTheme.colors.secondary,
+            color = if (note.urgent) Urgent else NonUrgent,
             shape = RoundedCornerShape(17.dp)
 
         ) {
@@ -59,7 +91,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Notes(notes: List<Note>) {
-        LazyColumn {
+        LazyColumn(Modifier.padding(0.dp, 15.dp)) {
             items(notes) { note ->
                 NoteView(note = note)
             }

@@ -12,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.agombiproducts.notes.notes.CreateNoteView
+import com.agombiproducts.notes.notes.ModifyNoteView
 import com.agombiproducts.notes.notes.RenderShowNotes
 import com.agombiproducts.notes.routes.NavRoute
 import com.agombiproducts.notes.ui.theme.NotesTheme
@@ -44,7 +45,11 @@ class MainActivity : ComponentActivity() {
             }
 
             composable(NavRoute.Create.route) {
-               CreateNoteView().CreateNoteView(navController = navController)
+                CreateNoteView().CreateNoteView(navController = navController)
+            }
+
+            composable(NavRoute.Modify.route) {
+                ModifyNoteView().renderModifyView(navController = navController)
             }
         }
     }

@@ -2,6 +2,7 @@
     <string name="app_name">Notes</string>
     <!--Layer Labels-->
     <string name="title_create_note">Write a note</string>
+    <string name="title_modify_note">Modify the note</string>
     <!--Button Texts-->
     <string name="btn_create_desc">Add a new todo</string>
     <string name="btn_back_desc">Back to the main menu</string>

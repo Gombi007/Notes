@@ -87,7 +87,7 @@ fun NoteView(note: Note, navController: NavHostController) {
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onPress = { isExpanded = !isExpanded },
-                        onLongPress = { navController.navigate(NavRoute.Create.route) }
+                        onLongPress = { navController.navigate(NavRoute.Modify.route) }
                     )
                 },
 

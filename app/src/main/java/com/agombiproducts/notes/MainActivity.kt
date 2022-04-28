@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
             }
 
             composable(NavRoute.Create.route) {
-                CreateNoteView(navController)
+               CreateNoteView().CreateNoteView(navController = navController)
             }
         }
     }

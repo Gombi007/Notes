@@ -13,5 +13,6 @@
     <string name="switch_urgent">Urgent</string>
     <!--Error texts-->
     <string name="error_input_text_length">"Min length 3 character"</string>
+    <string name="error_input_text_empty">"Please add a min 3 length text or step back"</string>
 
 </resources>

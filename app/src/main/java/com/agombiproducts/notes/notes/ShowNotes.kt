@@ -1,7 +1,7 @@
 package com.agombiproducts.notes.notes
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +35,7 @@ fun RenderShowNotes(navController: NavHostController) {
     var context = LocalContext.current
     Column() {
         TopMenuArea(stringResource(id = R.string.app_name))
-        Notes(DatabaseToFile().reader(context))
+        Notes(DatabaseToFile().reader(context), navController)
     }
     BoxWithConstraints(
         Modifier
@@ -69,9 +70,10 @@ fun CreateNoteButton(navController: NavHostController) {
 }
 
 @Composable
-fun NoteView(note: Note) {
+fun NoteView(note: Note, navController: NavHostController) {
     val textColor = if (note.urgent) Urgent else NonUrgent
     var isExpanded by remember { mutableStateOf(false) }
+
     Surface(
         modifier = Modifier
             .padding(15.dp, 10.dp)
@@ -82,7 +84,13 @@ fun NoteView(note: Note) {
         Column(
             modifier = Modifier
                 .padding(0.dp, 10.dp)
-                .clickable { isExpanded = !isExpanded },
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onPress = { isExpanded = !isExpanded },
+                        onLongPress = { navController.navigate(NavRoute.Create.route) }
+                    )
+                },
+
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -97,10 +105,10 @@ fun NoteView(note: Note) {
 }
 
 @Composable
-fun Notes(notes: List<Note>) {
+fun Notes(notes: List<Note>, navController: NavHostController) {
     LazyColumn(Modifier.padding(0.dp, 15.dp)) {
         items(notes) { note ->
-            NoteView(note = note)
+            NoteView(note = note, navController = navController)
         }
     }
 }

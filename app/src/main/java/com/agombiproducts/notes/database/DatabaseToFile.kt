@@ -59,6 +59,33 @@ class DatabaseToFile {
         return false
     }
 
+    private fun writeAllAndDeletePreviousFile(context: Context, notes: MutableList<Note>): Boolean {
+        var file = initWriter(context)
+        if (file != null) {
+            try {
+                file.delete()
+                initWriter(context)
+                var gson = Gson()
+                var writer = BufferedWriter(FileWriter(file, true))
+                for (note in notes) {
+                    var resultTodo = gson.toJson(note)
+                    writer.append(resultTodo)
+                    writer.newLine()
+                }
+                writer.close()
+                return true
+
+            } catch (exception: Exception) {
+                Log.i(
+                    TAG,
+                    "something went wrong in file writer ${FormattedDate.getCurrentDate()}"
+                )
+
+            }
+        }
+        return false
+    }
+
     fun reader(context: Context): ArrayList<Note> {
         var file = initWriter(context)
         var result: ArrayList<Note> = ArrayList()
@@ -93,5 +120,18 @@ class DatabaseToFile {
             }
         }
         return allId
+    }
+
+    fun deleteNoteById(context: Context, id: String?) {
+        var list = reader(context = context)
+        var newList = mutableListOf<Note>()
+        for (note in list) {
+            if (!note.id.equals(id)) {
+                newList.add(note)
+            }
+        }
+        writeAllAndDeletePreviousFile(context, newList)
+
+
     }
 }

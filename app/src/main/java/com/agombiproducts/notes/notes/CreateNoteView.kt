@@ -36,6 +36,7 @@ fun CreateNoteView(navController: NavHostController) {
 
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NoteTaskInput(navController: NavHostController) {
     var text by remember { mutableStateOf("") }
@@ -72,7 +73,8 @@ fun NoteTaskInput(navController: NavHostController) {
             Row() {
                 Surface(
                     color = MaterialTheme.colors.onBackground,
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(20.dp),
+                    onClick = { urgent = !urgent }
                 ) {
                     Row(modifier = Modifier.padding(5.dp, 10.dp)) {
                         Text(
@@ -89,7 +91,8 @@ fun NoteTaskInput(navController: NavHostController) {
 
                 Surface(
                     color = MaterialTheme.colors.onBackground,
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(20.dp),
+                    onClick = { done = !done }
                 ) {
                     Row(modifier = Modifier.padding(5.dp, 10.dp)) {
                         Text(

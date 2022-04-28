@@ -1,7 +1,6 @@
 package com.agombiproducts.notes.notes
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -38,7 +37,7 @@ fun RenderShowNotes(navController: NavHostController) {
     BoxWithConstraints(
         Modifier
             .offset(
-                330.dp, 640.dp
+                320.dp, 640.dp
             )
             .padding(
                 0.dp, 15.dp
@@ -69,13 +68,12 @@ fun CreateNoteButton(navController: NavHostController) {
 
 @Composable
 fun NoteView(note: Note) {
-    val borderColor = if (note.urgent) Urgent else NonUrgent
+    val textColor = if (note.urgent) Urgent else NonUrgent
     var isExpanded by remember { mutableStateOf(false) }
     Surface(
         modifier = Modifier
-            .padding(15.dp, 5.dp)
-            .fillMaxWidth()
-            .border(1.dp, borderColor, RoundedCornerShape(17.dp)),
+            .padding(15.dp, 10.dp)
+            .fillMaxWidth(),
         color = MaterialTheme.colors.onBackground,
         shape = RoundedCornerShape(17.dp)
     ) {
@@ -87,11 +85,11 @@ fun NoteView(note: Note) {
         ) {
             Text(
                 text = note.task,
-                Modifier.padding(15.dp, 10.dp),
-                color = MaterialTheme.colors.primary,
+                Modifier.padding(15.dp, 3.dp),
+                color = textColor,
                 maxLines = if (isExpanded) Int.MAX_VALUE else 1
             )
-            Text(text = note.modified.toString(), color = MaterialTheme.colors.primary)
+            Text(text = note.modified.toString(), color = textColor)
         }
     }
 }
@@ -109,7 +107,6 @@ fun Notes(notes: List<Note>) {
 fun TopMenuArea(title: String) {
     androidx.compose.material.Surface(
         color = MaterialTheme.colors.onBackground,
-        shape = RoundedCornerShape(10.dp),
         modifier = Modifier
             .fillMaxWidth()
             .height(40.dp)

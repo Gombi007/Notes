@@ -4,7 +4,7 @@ import com.agombiproducts.notes.models.Note
 
 class Dummy {
     object Data {
-        val notes = listOf<Note>(
+        val notes = mutableListOf(
             Note("1", "Go for a walk with my dog in the afternoon", true, false, "2022-12-11", "2022-12-23"),
             Note("2", "Buying a fresh bread in the Tesco", false, false, "2022-12-11", "2022-12-23"),
             Note("3", "Buying a new car", false, false, "2022-12-11", "2022-12-23"),

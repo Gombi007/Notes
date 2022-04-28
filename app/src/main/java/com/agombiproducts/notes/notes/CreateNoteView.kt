@@ -21,7 +21,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.agombiproducts.notes.R
+import com.agombiproducts.notes.database.DatabaseToFile
 import com.agombiproducts.notes.database.FormattedDate
+import com.agombiproducts.notes.database.IdGenerator
 import com.agombiproducts.notes.models.Note
 import com.agombiproducts.notes.routes.NavRoute
 import com.agombiproducts.notes.ui.theme.Green_Save
@@ -158,10 +160,11 @@ class CreateNoteView {
 
     private fun collectAllNoteData(context: Context, note: Note) {
         val currentDate = FormattedDate.getCurrentDate()
-        val id = "AAAAAA"
+        val id = IdGenerator().getNewId()
         note.id = id
         note.created = currentDate
         note.modified = currentDate
-        Toast.makeText(context, note.toString(), Toast.LENGTH_SHORT).show()
+
+        DatabaseToFile().writer(context, note)
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,10 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.agombiproducts.notes.database.Dummy
 import com.agombiproducts.notes.models.Note
-import com.agombiproducts.notes.ui.theme.Gold
-import com.agombiproducts.notes.ui.theme.NonUrgent
-import com.agombiproducts.notes.ui.theme.NotesTheme
-import com.agombiproducts.notes.ui.theme.Urgent
+import com.agombiproducts.notes.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,11 +69,14 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun NoteView(note: Note) {
+        var borderColor = if (note.urgent) Urgent else NonUrgent
         Surface(
             modifier = Modifier
                 .padding(5.dp, 5.dp)
-                .fillMaxWidth(),
-            color = if (note.urgent) Urgent else NonUrgent,
+                .fillMaxWidth()
+                .border(2.dp, borderColor, RoundedCornerShape(17.dp)),
+            color = NoteBG,
+
             shape = RoundedCornerShape(17.dp)
 
         ) {

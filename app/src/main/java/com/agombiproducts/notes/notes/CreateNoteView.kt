@@ -160,11 +160,17 @@ class CreateNoteView {
 
     private fun collectAllNoteData(context: Context, note: Note) {
         val currentDate = FormattedDate.getCurrentDate()
-        val id = IdGenerator().getNewId()
-        note.id = id
         note.created = currentDate
         note.modified = currentDate
 
+        var id = IdGenerator().getNewId()
+        val allExistingIdInTheDatabase = DatabaseToFile().readAllId(context)
+        if (allExistingIdInTheDatabase.isNotEmpty()) {
+            while (allExistingIdInTheDatabase.contains(id)) {
+                id = IdGenerator().getNewId()
+            }
+        }
+        note.id = id
         DatabaseToFile().writer(context, note)
     }
 }

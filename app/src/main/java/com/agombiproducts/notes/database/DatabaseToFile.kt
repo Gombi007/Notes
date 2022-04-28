@@ -82,4 +82,16 @@ class DatabaseToFile {
         }
         return ArrayList()
     }
+
+    fun readAllId(context: Context): List<String?> {
+        var list = reader(context = context)
+        var allId = mutableListOf<String?>()
+
+        if (list.isNotEmpty()) {
+            for (note in list) {
+                allId.add(note.id)
+            }
+        }
+        return allId
+    }
 }

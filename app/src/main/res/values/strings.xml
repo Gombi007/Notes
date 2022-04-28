@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Notes</string>
+    <!--Layer Labels-->
+    <string name="title_create_note">Write a todo</string>
+    <!--Button Texts-->
+    <string name="btn_create_desc">Add a new todo</string>
+    <string name="btn_back_desc">Back to the main menu</string>
+    <string name="btn_exit_desc">Exit from the app</string>
+    <string name="btn_create_todo_save">SAVE</string>
+    <!--Create layer things-->
+    <string name="txt_task_hint">Write a task here</string>
+    <string name="switch_done">Done</string>
+    <string name="switch_urgent">Urgent</string>
+    <!--Error texts-->
+    <string name="error_input_text_length">"Min length 3 character"</string>
+
 </resources>

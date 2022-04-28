@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.agombiproducts.notes.R
 import com.agombiproducts.notes.database.Dummy
@@ -29,7 +31,10 @@ import com.agombiproducts.notes.ui.theme.Urgent
 
 @Composable
 fun RenderShowNotes(navController: NavHostController) {
-    Notes(notes = Dummy.Data.notes)
+    Column() {
+        TopMenuArea(stringResource(id = R.string.app_name))
+        Notes(notes = Dummy.Data.notes)
+    }
     BoxWithConstraints(
         Modifier
             .offset(
@@ -82,7 +87,7 @@ fun NoteView(note: Note) {
         ) {
             Text(
                 text = note.task,
-                Modifier.padding(15.dp,10.dp),
+                Modifier.padding(15.dp, 10.dp),
                 color = MaterialTheme.colors.primary,
                 maxLines = if (isExpanded) Int.MAX_VALUE else 1
             )
@@ -99,3 +104,28 @@ fun Notes(notes: List<Note>) {
         }
     }
 }
+
+@Composable
+fun TopMenuArea(title: String) {
+    androidx.compose.material.Surface(
+        color = MaterialTheme.colors.onBackground,
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(40.dp)
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Row() {
+                Text(
+                    text = title,
+                    color = MaterialTheme.colors.primary,
+                    fontSize = 22.sp
+                )
+            }
+        }
+    }
+}
+

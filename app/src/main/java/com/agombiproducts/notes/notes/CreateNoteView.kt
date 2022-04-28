@@ -1,16 +1,22 @@
 package com.agombiproducts.notes.notes
 
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.navigation.NavHostController
+import com.agombiproducts.notes.R
 
 @Composable
 fun CreateNoteView(navController: NavHostController) {
-    NoteTaskInput()
+    Row() {
+        TopMenuArea(title = stringResource(id = R.string.title_create_note))
+        NoteTaskInput()
+    }
 
 }
 

@@ -44,13 +44,13 @@ fun RenderShowNotes(navController: NavHostController) {
                 0.dp, 15.dp
             )
     ) {
-        CreateNote(navController)
+        CreateNoteButton(navController)
     }
 }
 
 
 @Composable
-fun CreateNote(navController: NavHostController) {
+fun CreateNoteButton(navController: NavHostController) {
     FloatingActionButton(
         onClick = {
             navController.navigate(NavRoute.Create.route)

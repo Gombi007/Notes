@@ -5,6 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -89,15 +90,25 @@ class CreateNoteView {
                     Surface(
                         color = MaterialTheme.colors.onBackground,
                         shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier.clickable { urgent = !urgent },
+                        modifier = Modifier
+                            .clickable(
+                                interactionSource = MutableInteractionSource(),
+                                indication = null,
+                                onClick = { urgent = !urgent })
+
                     ) {
                         Row(modifier = Modifier.padding(5.dp, 10.dp)) {
                             Text(
                                 text = stringResource(id = R.string.switch_urgent),
                                 color = MaterialTheme.colors.primary,
-                                modifier = Modifier.padding(10.dp, 0.dp)
+                                modifier = Modifier
+                                    .padding(10.dp, 0.dp)
+                                    .width(50.dp)
                             )
-                            Switch(checked = urgent, onCheckedChange = { urgent = it })
+                            Switch(
+                                checked = urgent,
+                                onCheckedChange = { urgent = it }
+                            )
                         }
                     }
 
@@ -106,15 +117,25 @@ class CreateNoteView {
                     Surface(
                         color = MaterialTheme.colors.onBackground,
                         shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier.clickable { done = !done },
+                        modifier = Modifier
+                            .clickable(
+                                interactionSource = MutableInteractionSource(),
+                                indication = null,
+                                onClick = { done = !done })
+
                     ) {
                         Row(modifier = Modifier.padding(5.dp, 10.dp)) {
                             Text(
                                 text = stringResource(id = R.string.switch_done),
                                 color = MaterialTheme.colors.primary,
-                                modifier = Modifier.padding(10.dp, 0.dp)
+                                modifier = Modifier
+                                    .padding(10.dp, 0.dp)
+                                    .width(50.dp)
                             )
-                            Switch(checked = done, onCheckedChange = { done = it })
+                            Switch(
+                                checked = done,
+                                onCheckedChange = { done = it }
+                            )
                         }
                     }
                 }
@@ -173,4 +194,8 @@ class CreateNoteView {
         note.id = id
         DatabaseToFile().writer(context, note)
     }
+
+
 }
+
+

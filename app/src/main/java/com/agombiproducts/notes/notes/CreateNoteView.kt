@@ -33,10 +33,10 @@ import com.agombiproducts.notes.ui.theme.Urgent
 class CreateNoteView {
 
     @Composable
-    fun CreateNoteView(navController: NavHostController) {
+    fun RenderCreateNoteView(navController: NavHostController) {
         Surface(color = MaterialTheme.colors.background, modifier = Modifier.fillMaxHeight()) {
             Column() {
-                TopMenuArea(title = stringResource(id = R.string.title_create_note))
+                TopMenu().TopMenuArea(title = stringResource(id = R.string.title_create_note))
                 NoteTaskInput(navController = navController)
             }
         }

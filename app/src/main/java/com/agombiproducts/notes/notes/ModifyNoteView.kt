@@ -12,13 +12,13 @@ import com.agombiproducts.notes.R
 class ModifyNoteView {
 
     @Composable
-    fun renderModifyView(navController: NavHostController) {
+    fun RenderModifyView(navController: NavHostController) {
         Surface(
             Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
         ) {
-            TopMenuArea(stringResource(id = R.string.title_modify_note))
+            TopMenu().TopMenuArea(stringResource(id = R.string.title_modify_note))
 
 
         }

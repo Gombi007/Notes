@@ -13,7 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.agombiproducts.notes.notes.CreateNoteView
 import com.agombiproducts.notes.notes.ModifyNoteView
-import com.agombiproducts.notes.notes.RenderShowNotes
+import com.agombiproducts.notes.notes.ShowNotes
 import com.agombiproducts.notes.routes.NavRoute
 import com.agombiproducts.notes.ui.theme.NotesTheme
 
@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NotesTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -41,15 +40,15 @@ class MainActivity : ComponentActivity() {
         NavHost(navController = navController, startDestination = NavRoute.Home.route) {
 
             composable(NavRoute.Home.route) {
-                RenderShowNotes(navController = navController)
+                ShowNotes().RenderShowNotes(navController = navController)
             }
 
             composable(NavRoute.Create.route) {
-                CreateNoteView().CreateNoteView(navController = navController)
+                CreateNoteView().RenderCreateNoteView(navController = navController)
             }
 
             composable(NavRoute.Modify.route) {
-                ModifyNoteView().renderModifyView(navController = navController)
+                ModifyNoteView().RenderModifyView(navController = navController)
             }
         }
     }

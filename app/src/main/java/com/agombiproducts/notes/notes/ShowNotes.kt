@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -25,6 +26,8 @@ import com.agombiproducts.notes.R
 import com.agombiproducts.notes.database.DatabaseToFile
 import com.agombiproducts.notes.models.Note
 import com.agombiproducts.notes.routes.NavRoute
+import com.agombiproducts.notes.ui.theme.Black
+import com.agombiproducts.notes.ui.theme.Gold_500
 import com.agombiproducts.notes.ui.theme.NonUrgent
 import com.agombiproducts.notes.ui.theme.Urgent
 
@@ -57,6 +60,7 @@ class ShowNotes {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_add_24),
+                colorFilter = ColorFilter.tint(Black) ,
                 contentDescription = "Profile picture",
                 modifier = Modifier
                     .size(50.dp)

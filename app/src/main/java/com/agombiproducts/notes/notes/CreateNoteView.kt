@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -27,6 +28,7 @@ import com.agombiproducts.notes.database.FormattedDate
 import com.agombiproducts.notes.database.IdGenerator
 import com.agombiproducts.notes.models.Note
 import com.agombiproducts.notes.routes.NavRoute
+import com.agombiproducts.notes.ui.theme.Black
 import com.agombiproducts.notes.ui.theme.Green_Save
 import com.agombiproducts.notes.ui.theme.Urgent
 
@@ -51,7 +53,7 @@ class CreateNoteView {
                     label = stringResource(id = R.string.switch_urgent),
                     checked = urgent,
                     onCheckedChange = { value -> urgent = value })
-                Spacer(modifier = Modifier.width(50.dp))
+                Spacer(modifier = Modifier.width(40.dp))
                 SwitchSelector(
                     label = stringResource(id = R.string.switch_done),
                     checked = done,
@@ -149,6 +151,7 @@ class CreateNoteView {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_check_24),
+                colorFilter = ColorFilter.tint(Black),
                 contentDescription = "Profile picture",
                 modifier = Modifier
                     .size(50.dp)

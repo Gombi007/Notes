@@ -27,7 +27,6 @@ import com.agombiproducts.notes.database.DatabaseToFile
 import com.agombiproducts.notes.models.Note
 import com.agombiproducts.notes.routes.NavRoute
 import com.agombiproducts.notes.ui.theme.Black
-import com.agombiproducts.notes.ui.theme.Gold_500
 import com.agombiproducts.notes.ui.theme.NonUrgent
 import com.agombiproducts.notes.ui.theme.Urgent
 
@@ -45,22 +44,25 @@ class ShowNotes {
             TopMenu().TopMenuArea(stringResource(id = R.string.app_name))
             Notes(notes = readAllNotesFromFile)
         }
-        CreateNoteButton()
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomEnd) {
+            CreateNoteButton()
+
+        }
     }
 
 
     @Composable
     fun CreateNoteButton() {
         FloatingActionButton(
+            modifier = Modifier.padding(20.dp, 30.dp),
             backgroundColor = MaterialTheme.colors.secondaryVariant,
-            modifier = Modifier.offset(315.dp, 640.dp),
             onClick = {
                 classLevelNavController.navigate(NavRoute.Create.route)
             },
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_baseline_add_24),
-                colorFilter = ColorFilter.tint(Black) ,
+                colorFilter = ColorFilter.tint(Black),
                 contentDescription = "Profile picture",
                 modifier = Modifier
                     .size(50.dp)

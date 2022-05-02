@@ -98,6 +98,7 @@ class DatabaseToFile {
                     var todo = gson.fromJson(line, Note::class.java)
                     result.add(todo)
                 }
+                reader.close()
                 return result
 
             } catch (exception: Exception) {
@@ -131,7 +132,17 @@ class DatabaseToFile {
             }
         }
         writeAllAndDeletePreviousFile(context, newList)
+    }
 
+    fun getNoteById(context: Context, id: String?): Note {
+        var list = reader(context = context)
 
+        for (note in list) {
+            if (note.id.equals(id)) {
+                return note
+            }
+        }
+        return Note("", "", false, false, "", "")
+        //TODO
     }
 }

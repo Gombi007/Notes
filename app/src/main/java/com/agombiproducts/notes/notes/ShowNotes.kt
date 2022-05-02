@@ -90,7 +90,7 @@ class ShowNotes {
                     .pointerInput(Unit) {
                         detectTapGestures(
                             onPress = { isExpanded = !isExpanded },
-                            onLongPress = { classLevelNavController.navigate(NavRoute.Modify.route) }
+                            onLongPress = { classLevelNavController.navigate(NavRoute.Modify.route + "/${note.id}") }
                         )
                     }
 

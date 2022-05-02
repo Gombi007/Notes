@@ -47,8 +47,9 @@ class MainActivity : ComponentActivity() {
                 CreateNoteView().RenderCreateNoteView(navController = navController)
             }
 
-            composable(NavRoute.Modify.route) {
-                ModifyNoteView().RenderModifyView(navController = navController)
+            composable(NavRoute.Modify.route + "/{noteId}") { arg ->
+                val noteId = arg.arguments?.getString("noteId")
+                ModifyNoteView().RenderModifyView(navController = navController, noteId = noteId)
             }
         }
     }

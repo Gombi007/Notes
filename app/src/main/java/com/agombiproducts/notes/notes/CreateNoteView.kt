@@ -11,7 +11,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TextFieldDefaults.textFieldColors
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -102,21 +101,25 @@ class CreateNoteView {
         Card(
             backgroundColor = MaterialTheme.colors.onBackground,
             shape = RoundedCornerShape(20.dp),
-            modifier = Modifier.toggleable(
-                interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(radius = 500.dp),
-                value = checked,
-                onValueChange = onCheckedChange
-            )
+            modifier = Modifier
+                .height(40.dp)
+                .width(120.dp)
+                .toggleable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                    value = checked,
+                    onValueChange = onCheckedChange
+                )
         ) {
             Row(
-                modifier = Modifier.padding(10.dp, 5.dp)
-            ) {
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            )
+            {
                 Text(
                     text = label,
                     color = MaterialTheme.colors.primary
                 )
-                Spacer(modifier = Modifier.width(10.dp))
                 Switch(
                     checked = checked,
                     onCheckedChange = onCheckedChange

@@ -1,7 +1,7 @@
 package com.agombiproducts.notes.database
 
 import com.agombiproducts.notes.models.Note
-
+/*
 class Dummy {
     object Data {
         val notes = mutableListOf(
@@ -23,3 +23,4 @@ class Dummy {
         )
     }
 }
+ */
